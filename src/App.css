@@ -1,0 +1,12 @@
+.App {
+	justify-content: center;
+}
+
+.main {
+	width: 60vw;
+	border: 1px 1px 1px 1px solid;
+}
+
+.title {
+	text-align: center;
+}
