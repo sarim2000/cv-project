@@ -4,9 +4,18 @@
 
 .main {
 	width: 60vw;
-	border: 1px 1px 1px 1px solid;
+	border-style: solid;
+	padding: 10px;
 }
 
 .title {
 	text-align: center;
+}
+
+p {
+	font-size: large;
+}
+.titlerow {
+	display: flex;
+	justify-content: space-evenly;
 }
