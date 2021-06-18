@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as React from "react";
 // import * as ReactDOM from "react-dom";
+// import Pdf from "react-to-pdf";
 import Intro from "./components/introduction/introduction.component";
 import emptyInfo from "./utils/emptyInfo";
 import { Row, Card, Container, Button } from "react-bootstrap";
@@ -20,10 +21,14 @@ import "./App.css";
 function App() {
 	const [resume, setResume] = useState(emptyInfo);
 	const pdfExportComponent = React.useRef(null);
-	const exportPDFWithComponent = () => {
-		if (pdfExportComponent.current) {
-			pdfExportComponent.current.save();
-		}
+	const container = React.useRef(null);
+	const exportPDFWithMethod = () => {
+		let element = container.current || document.body;
+		savePDF(element, {
+			paperSize: "A4",
+			margin: 0,
+			fileName: `Report for ${new Date().getFullYear()}`,
+		});
 	};
 
 	const handleChange = (e) => {
@@ -283,7 +288,7 @@ function App() {
 						variant="primary"
 						size="lg"
 						block
-						onClick={exportPDFWithComponent}
+						onClick={exportPDFWithMethod}
 					>
 						Generate PDF
 					</Button>
@@ -292,10 +297,13 @@ function App() {
 			<PDFExport
 				ref={pdfExportComponent}
 				paperSize="A4"
-				margin="0cm"
-				ref={pdfExportComponent}
+				margin={0}
+				fileName={`Resume for ${new Date().getDate()}`}
 			>
-				<Container className="result justify-content-md-between">
+				<Container
+					className="result justify-content-md-between"
+					ref={container}
+				>
 					<Row>
 						<Result {...resume.personalInfo} />
 						<Container className="mt-2">
