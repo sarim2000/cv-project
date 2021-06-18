@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/sarim2000/cv-project/static/css/main.1320395e.chunk.css",
-    "main.js": "/sarim2000/cv-project/static/js/main.3ba81d4a.chunk.js",
-    "main.js.map": "/sarim2000/cv-project/static/js/main.3ba81d4a.chunk.js.map",
-    "runtime-main.js": "/sarim2000/cv-project/static/js/runtime-main.7d008a57.js",
-    "runtime-main.js.map": "/sarim2000/cv-project/static/js/runtime-main.7d008a57.js.map",
-    "static/css/2.4c97ca4f.chunk.css": "/sarim2000/cv-project/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.8f2e5e4b.chunk.js": "/sarim2000/cv-project/static/js/2.8f2e5e4b.chunk.js",
-    "static/js/2.8f2e5e4b.chunk.js.map": "/sarim2000/cv-project/static/js/2.8f2e5e4b.chunk.js.map",
-    "index.html": "/sarim2000/cv-project/index.html",
-    "static/css/2.4c97ca4f.chunk.css.map": "/sarim2000/cv-project/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.1320395e.chunk.css.map": "/sarim2000/cv-project/static/css/main.1320395e.chunk.css.map",
-    "static/js/2.8f2e5e4b.chunk.js.LICENSE.txt": "/sarim2000/cv-project/static/js/2.8f2e5e4b.chunk.js.LICENSE.txt"
+    "main.css": "/cv-project/static/css/main.1320395e.chunk.css",
+    "main.js": "/cv-project/static/js/main.3ba81d4a.chunk.js",
+    "main.js.map": "/cv-project/static/js/main.3ba81d4a.chunk.js.map",
+    "runtime-main.js": "/cv-project/static/js/runtime-main.20ddf127.js",
+    "runtime-main.js.map": "/cv-project/static/js/runtime-main.20ddf127.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/cv-project/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.8f2e5e4b.chunk.js": "/cv-project/static/js/2.8f2e5e4b.chunk.js",
+    "static/js/2.8f2e5e4b.chunk.js.map": "/cv-project/static/js/2.8f2e5e4b.chunk.js.map",
+    "index.html": "/cv-project/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/cv-project/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.1320395e.chunk.css.map": "/cv-project/static/css/main.1320395e.chunk.css.map",
+    "static/js/2.8f2e5e4b.chunk.js.LICENSE.txt": "/cv-project/static/js/2.8f2e5e4b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7d008a57.js",
+    "static/js/runtime-main.20ddf127.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.8f2e5e4b.chunk.js",
     "static/css/main.1320395e.chunk.css",
