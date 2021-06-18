@@ -290,7 +290,7 @@ function App() {
 						block
 						onClick={exportPDFWithMethod}
 					>
-						Generate PDF
+						Print PDF
 					</Button>
 				</Container>
 			</Card>
