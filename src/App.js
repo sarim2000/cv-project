@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import * as React from "react";
 // import * as ReactDOM from "react-dom";
 // import Pdf from "react-to-pdf";
+import { ReactToPdf } from "react-to-pdf";
 import Intro from "./components/introduction/introduction.component";
 import emptyInfo from "./utils/emptyInfo";
 import { Row, Card, Container, Button } from "react-bootstrap";
@@ -16,20 +17,28 @@ import ShowAchievements from "./components/result/showAchievements";
 import SkillShow from "./components/skills/skill.component";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 import ShowSk from "./components/result/showSk";
+import ReactToPrint from "react-to-print";
+// import { ComponentToPrint } from "./ComponentToPrint";
 import "./App.css";
-
+const ref = React.createRef();
+const options = {
+	orientation: "landscape",
+	unit: "in",
+	format: [4, 2],
+};
 function App() {
 	const [resume, setResume] = useState(emptyInfo);
-	const pdfExportComponent = React.useRef(null);
-	const container = React.useRef(null);
-	const exportPDFWithMethod = () => {
-		let element = container.current || document.body;
-		savePDF(element, {
-			paperSize: "A4",
-			margin: 0,
-			fileName: `Report for ${new Date().getFullYear()}`,
-		});
-	};
+	const componentRef = useRef();
+	// const pdfExportComponent = React.useRef(null);
+	// const container = React.useRef(null);
+	// const exportPDFWithMethod = () => {
+	// 	let element = container.current || document.body;
+	// 	savePDF(element, {
+	// 		paperSize: "A4",
+	// 		margin: 0,
+	// 		fileName: `Report for ${new Date().getFullYear()}`,
+	// 	});
+	// };
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -284,72 +293,66 @@ function App() {
 					})}
 				</Row>
 				<Container>
-					<Button
-						variant="primary"
-						size="lg"
-						block
-						onClick={exportPDFWithMethod}
-					>
-						Print PDF
-					</Button>
+					<ReactToPrint
+						trigger={() => (
+							<Button variant="primary" size="lg" block>
+								Print PDF
+							</Button>
+						)}
+						content={() => componentRef.current}
+					/>
 				</Container>
 			</Card>
-			<PDFExport
-				ref={pdfExportComponent}
-				paperSize="A4"
-				margin={0}
-				fileName={`Resume for ${new Date().getDate()}`}
+
+			<Container
+				className="result justify-content-md-between"
+				ref={componentRef}
 			>
-				<Container
-					className="result justify-content-md-between"
-					ref={container}
-				>
-					<Row>
-						<Result {...resume.personalInfo} />
-						<Container className="mt-2">
-							{resume.education.length !== 0 ? <h3>Education</h3> : null}
-							{resume.education.map((x) => {
-								return (
-									<ShowEducation
-										key={x.id}
-										universityName={x.universityName}
-										degree={x.degree}
-										city={x.city}
-										from={x.from}
-										to={x.to}
-									/>
-								);
-							})}
-						</Container>
-						<Container className="mt-2">
-							{resume.experience.length !== 0 ? <h3>Experience</h3> : null}
-							{resume.experience.map((x) => {
-								return (
-									<ShowExperience
-										key={x.id}
-										companyName={x.companyName}
-										jobDescript={x.jobDescript}
-										jobFrom={x.jobFrom}
-										jobTo={x.jobTo}
-									/>
-								);
-							})}
-						</Container>
-						<Container className="mt-2">
-							{resume.achievements.length !== 0 ? <h3>Achievements</h3> : null}
-							{resume.achievements.map((x) => {
-								return <ShowAchievements key={x.id} x={x} />;
-							})}
-						</Container>
-						<Container className="mt-2">
-							{resume.skills.length !== 0 ? <h3>Skills</h3> : null}
-							{resume.skills.map((x) => {
-								return <ShowSk key={x.id} x={x} />;
-							})}
-						</Container>
-					</Row>
-				</Container>
-			</PDFExport>
+				<Row>
+					<Result {...resume.personalInfo} />
+					<Container className="mt-2">
+						{resume.education.length !== 0 ? <h3>Education</h3> : null}
+						{resume.education.map((x) => {
+							return (
+								<ShowEducation
+									key={x.id}
+									universityName={x.universityName}
+									degree={x.degree}
+									city={x.city}
+									from={x.from}
+									to={x.to}
+								/>
+							);
+						})}
+					</Container>
+					<Container className="mt-2">
+						{resume.experience.length !== 0 ? <h3>Experience</h3> : null}
+						{resume.experience.map((x) => {
+							return (
+								<ShowExperience
+									key={x.id}
+									companyName={x.companyName}
+									jobDescript={x.jobDescript}
+									jobFrom={x.jobFrom}
+									jobTo={x.jobTo}
+								/>
+							);
+						})}
+					</Container>
+					<Container className="mt-2">
+						{resume.achievements.length !== 0 ? <h3>Achievements</h3> : null}
+						{resume.achievements.map((x) => {
+							return <ShowAchievements key={x.id} x={x} />;
+						})}
+					</Container>
+					<Container className="mt-2">
+						{resume.skills.length !== 0 ? <h3>Skills</h3> : null}
+						{resume.skills.map((x) => {
+							return <ShowSk key={x.id} x={x} />;
+						})}
+					</Container>
+				</Row>
+			</Container>
 		</div>
 	);
 }
