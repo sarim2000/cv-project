@@ -289,7 +289,12 @@ function App() {
 					</Button>
 				</Container>
 			</Card>
-			<PDFExport ref={pdfExportComponent} paperSize="A4" margin="0cm">
+			<PDFExport
+				ref={pdfExportComponent}
+				paperSize="A4"
+				margin="0cm"
+				ref={pdfExportComponent}
+			>
 				<Container className="result justify-content-md-between">
 					<Row>
 						<Result {...resume.personalInfo} />
