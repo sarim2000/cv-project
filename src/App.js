@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import * as React from "react";
 // import * as ReactDOM from "react-dom";
-// import Pdf from "react-to-pdf";
+
+import Profile from "./components/profiles/profile.component";
 import { ReactToPdf } from "react-to-pdf";
 import Intro from "./components/introduction/introduction.component";
 import emptyInfo from "./utils/emptyInfo";
@@ -20,6 +21,7 @@ import ShowSk from "./components/result/showSk";
 import ReactToPrint from "react-to-print";
 // import { ComponentToPrint } from "./ComponentToPrint";
 import "./App.css";
+var psl = require("psl");
 const ref = React.createRef();
 const options = {
 	orientation: "landscape",
@@ -50,6 +52,12 @@ function App() {
 				[name]: value,
 			},
 		}));
+	};
+
+	const handleChangeProfile = (e) => {
+		const x = e.target.value;
+		// var parsed = psl.parse(e.target.value);x.substr(8)
+		console.log(x.slice(x.indexOf(8), x.indexOf(".com")));
 	};
 
 	//education section
@@ -86,14 +94,13 @@ function App() {
 		console.log(id);
 		setResume((resume) => {
 			// eslint-disable-next-line array-callback-return
-			const newEdu = resume.education.map((eduInfo) => {
-				if (eduInfo.id === id) {
+			const newEdu = resume.education.filter((eduInfo) => {
+				if (eduInfo.id !== id) {
 					return eduInfo;
 				}
 			});
-			const idx = resume.education.indexOf(newEdu);
-			console.log(resume.education);
-			return { ...resume, education: resume.education.splice(idx, 1) };
+
+			return { ...resume, education: newEdu };
 		});
 	};
 
@@ -129,14 +136,13 @@ function App() {
 		console.log(id);
 		setResume((resume) => {
 			// eslint-disable-next-line array-callback-return
-			const newEdu = resume.experience.map((eduInfo) => {
-				if (eduInfo.id === id) {
+			const newEdu = resume.experience.filter((eduInfo) => {
+				if (eduInfo.id !== id) {
 					return eduInfo;
 				}
 			});
-			const idx = resume.experience.indexOf(newEdu);
-			console.log(resume.experience);
-			return { ...resume, experience: resume.experience.splice(idx, 1) };
+
+			return { ...resume, experience: newEdu };
 		});
 	};
 
@@ -169,14 +175,13 @@ function App() {
 		console.log(id);
 		setResume((resume) => {
 			// eslint-disable-next-line array-callback-return
-			const newEdu = resume.skills.map((eduInfo) => {
-				if (eduInfo.id === id) {
+			const newEdu = resume.skills.filter((eduInfo) => {
+				if (eduInfo.id !== id) {
 					return eduInfo;
 				}
 			});
-			const idx = resume.skills.indexOf(newEdu);
-			console.log(resume.skills);
-			return { ...resume, skills: resume.skills.splice(idx, 1) };
+			console.log(newEdu);
+			return { ...resume, skills: newEdu };
 		});
 	};
 	//skills
@@ -208,14 +213,13 @@ function App() {
 		console.log(id);
 		setResume((resume) => {
 			// eslint-disable-next-line array-callback-return
-			const newEdu = resume.achievements.map((eduInfo) => {
-				if (eduInfo.id === id) {
+			const newEdu = resume.achievements.filter((eduInfo) => {
+				if (eduInfo.id !== id) {
 					return eduInfo;
 				}
 			});
-			const idx = resume.achievements.indexOf(newEdu);
-			console.log(resume.experience);
-			return { ...resume, achievements: resume.achievements.splice(idx, 1) };
+
+			return { ...resume, achievements: newEdu };
 		});
 	};
 	return (
@@ -292,6 +296,15 @@ function App() {
 						);
 					})}
 				</Row>
+				<Row>
+					<Container>
+						<h3>Profile Links</h3>
+						<button onClick={AddButtonSkills}>Add</button>
+					</Container>
+
+					<Profile handleChangeProfile={handleChangeProfile} />
+				</Row>
+
 				<Container>
 					<ReactToPrint
 						trigger={() => (
@@ -311,7 +324,9 @@ function App() {
 				<Row>
 					<Result {...resume.personalInfo} />
 					<Container className="mt-2">
-						{resume.education.length !== 0 ? <h3>Education</h3> : null}
+						{resume.education.length !== 0 ? (
+							<h3 className="sep">Education</h3>
+						) : null}
 						{resume.education.map((x) => {
 							return (
 								<ShowEducation
@@ -326,7 +341,9 @@ function App() {
 						})}
 					</Container>
 					<Container className="mt-2">
-						{resume.experience.length !== 0 ? <h3>Experience</h3> : null}
+						{resume.experience.length !== 0 ? (
+							<h3 className="sep">Experience</h3>
+						) : null}
 						{resume.experience.map((x) => {
 							return (
 								<ShowExperience
@@ -340,13 +357,17 @@ function App() {
 						})}
 					</Container>
 					<Container className="mt-2">
-						{resume.achievements.length !== 0 ? <h3>Achievements</h3> : null}
+						{resume.achievements.length !== 0 ? (
+							<h3 className="sep">Achievements</h3>
+						) : null}
 						{resume.achievements.map((x) => {
 							return <ShowAchievements key={x.id} x={x} />;
 						})}
 					</Container>
 					<Container className="mt-2">
-						{resume.skills.length !== 0 ? <h3>Skills</h3> : null}
+						{resume.skills.length !== 0 ? (
+							<h3 className="sep">Skills</h3>
+						) : null}
 						{resume.skills.map((x) => {
 							return <ShowSk key={x.id} x={x} />;
 						})}

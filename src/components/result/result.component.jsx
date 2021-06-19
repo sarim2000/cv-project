@@ -13,12 +13,14 @@ const Result = ({ fName, sName, phoneNo, email, linkedIn, github }) => {
 				</Row>
 				<Row className="justify-content-md-around">
 					<Col style={{ textAlign: "center" }}>{phoneNo}</Col>
-					<Col style={{ textAlign: "center" }}>{email}</Col>
 					<Col style={{ textAlign: "center" }}>
-						<a href={linkedIn}>LinkedIn</a>
+						<a href={`mailto:${email}`}>{email}</a>
 					</Col>
 					<Col style={{ textAlign: "center" }}>
-						<a href={github}>Github</a>
+						<a href={linkedIn}>{linkedIn.length !== 0 ? "Linkedin" : null}</a>
+					</Col>
+					<Col style={{ textAlign: "center" }}>
+						<a href={github}>{github.length !== 0 ? "Github" : null}</a>
 					</Col>
 				</Row>
 			</Container>
