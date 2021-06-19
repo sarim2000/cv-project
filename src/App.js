@@ -296,14 +296,6 @@ function App() {
 						);
 					})}
 				</Row>
-				<Row>
-					<Container>
-						<h3>Profile Links</h3>
-						<button onClick={AddButtonSkills}>Add</button>
-					</Container>
-
-					<Profile handleChangeProfile={handleChangeProfile} />
-				</Row>
 
 				<Container>
 					<ReactToPrint
