@@ -10,6 +10,8 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
 /**
  * @license
   Copyright (c) 2008, Adobe Systems Incorporated
