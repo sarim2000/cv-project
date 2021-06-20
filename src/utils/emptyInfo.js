@@ -13,6 +13,7 @@ const emptyInfo = {
 	achievements: [],
 	skills: [],
 	profiles: {},
+	projects: [],
 };
 
 export default emptyInfo;

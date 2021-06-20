@@ -2,13 +2,17 @@ import { Row, Col } from "react-bootstrap";
 
 const ShowAchievements = ({ x }) => {
 	return (
-		<div className="mb-2">
-			<Row>
-				<Col xs={6} md={8}>
-					<li style={{ marginLeft: "100px" }}>{x.what}</li>
-				</Col>
-			</Row>
-		</div>
+		<ul>
+			<li style={{ marginLeft: "100px" }}>
+				<div className="mb-2">
+					<Row>
+						<Col xs={6} md={8}>
+							{x.what}
+						</Col>
+					</Row>
+				</div>
+			</li>
+		</ul>
 	);
 };
 

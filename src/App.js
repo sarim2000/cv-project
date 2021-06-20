@@ -1,9 +1,6 @@
 import { useState, useRef } from "react";
 import * as React from "react";
-// import * as ReactDOM from "react-dom";
-
-import Profile from "./components/profiles/profile.component";
-import { ReactToPdf } from "react-to-pdf";
+import ProShow from "./components/project/project.component";
 import Intro from "./components/introduction/introduction.component";
 import emptyInfo from "./utils/emptyInfo";
 import { Row, Card, Container, Button } from "react-bootstrap";
@@ -16,18 +13,12 @@ import ExpShow from "./components/experience/expShow.component";
 import AchieveShow from "./components/achievements/achieveShow.component";
 import ShowAchievements from "./components/result/showAchievements";
 import SkillShow from "./components/skills/skill.component";
-import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import ShowProj from "./components/result/projectsShow";
 import ShowSk from "./components/result/showSk";
-import ReactToPrint from "react-to-print";
-// import { ComponentToPrint } from "./ComponentToPrint";
+import ReactToPrint, { PrintContextConsumer } from "react-to-print";
+
 import "./App.css";
-var psl = require("psl");
-const ref = React.createRef();
-const options = {
-	orientation: "landscape",
-	unit: "in",
-	format: [4, 2],
-};
+
 function App() {
 	const [resume, setResume] = useState(emptyInfo);
 	const componentRef = useRef();
@@ -52,12 +43,6 @@ function App() {
 				[name]: value,
 			},
 		}));
-	};
-
-	const handleChangeProfile = (e) => {
-		const x = e.target.value;
-		// var parsed = psl.parse(e.target.value);x.substr(8)
-		console.log(x.slice(x.indexOf(8), x.indexOf(".com")));
 	};
 
 	//education section
@@ -146,7 +131,7 @@ function App() {
 		});
 	};
 
-	//achievements
+	//skills
 	const handleSkills = (e, id) => {
 		const { name, value } = e.target;
 		setResume((resume) => {
@@ -184,7 +169,7 @@ function App() {
 			return { ...resume, skills: newEdu };
 		});
 	};
-	//skills
+	//achievements
 	const handleAchievements = (e, id) => {
 		const { name, value } = e.target;
 		setResume((resume) => {
@@ -222,6 +207,107 @@ function App() {
 			return { ...resume, achievements: newEdu };
 		});
 	};
+
+	//projects
+	const handleChangePro = (e, id) => {
+		const { name, value } = e.target;
+		console.log(id);
+		console.log(name, value);
+		setResume((resume) => {
+			if (name === "poi") {
+				const newEdu = resume.projects.map((eduInfo) => {
+					const y = eduInfo.points.map((x) => {
+						if (x.id === id) {
+							return { ...x, [name]: value };
+						}
+						return x;
+					});
+					console.log(eduInfo.points);
+					return { ...eduInfo, points: [...y] };
+				});
+				console.log(newEdu);
+				return { ...resume, projects: [...newEdu] };
+			} else {
+				console.log("hesllo");
+				const newEdu = resume.projects.map((eduInfo) => {
+					if (eduInfo.id === id) {
+						console.log(value);
+						return { ...eduInfo, [name]: value };
+					}
+					return eduInfo;
+				});
+				return { ...resume, projects: [...newEdu] };
+			}
+		});
+	};
+	const AddButtonPro = () => {
+		const edx = {
+			id: uuidv4(),
+			title: "",
+			tech: "",
+			points: [
+				{ id: uuidv4(), poi: "" },
+				{ id: uuidv4(), poi: "" },
+			],
+			link: "",
+		};
+
+		setResume((resume) => {
+			const x = resume.projects.concat(edx);
+			return { ...resume, projects: [...x] };
+		});
+	};
+	const DeleteProjectButton = (id) => {
+		console.log(id);
+		setResume((resume) => {
+			// eslint-disable-next-line array-callback-return
+			const newEdu = resume.projects.filter((eduInfo) => {
+				if (eduInfo.id !== id) {
+					return eduInfo;
+				}
+			});
+
+			return { ...resume, projects: newEdu };
+		});
+	};
+	const DeleteProjectsPointButton = (id) => {
+		console.log(id);
+		setResume((resume) => {
+			// eslint-disable-next-line array-callback-return
+			const newEdu = resume.projects.map((eduInfo) => {
+				const y = eduInfo.points.filter((x) => {
+					return x.id !== id;
+				});
+				console.log(eduInfo);
+				console.log(y);
+				return { ...eduInfo, points: y };
+			});
+			console.log(newEdu);
+			return { ...resume, projects: newEdu };
+		});
+	};
+	const AddProjectsPointButton = (id) => {
+		const edx = {
+			id: uuidv4(),
+			poi: "",
+		};
+
+		setResume((resume) => {
+			let y = [];
+			const newEdu = resume.projects.map((eduInfo) => {
+				if (eduInfo.id === id) {
+					// console.log(eduInfo);
+					y = eduInfo.points;
+					console.log(y);
+					const x = y.concat(edx);
+					console.log(x);
+					return { ...eduInfo, points: x };
+				}
+			});
+
+			return { ...resume, projects: newEdu };
+		});
+	};
 	return (
 		<div className="App">
 			<Card>
@@ -241,6 +327,25 @@ function App() {
 								key={edu.id}
 								onChange={handleAddEductaion}
 								onDelete={DeleteEduButton}
+							/>
+						);
+					})}
+				</Row>
+				<Row>
+					<Container>
+						<h3>Projects Info</h3>
+						<button onClick={AddButtonPro}>Add</button>
+					</Container>
+
+					{resume.projects.map((exp) => {
+						return (
+							<ProShow
+								pro={exp}
+								key={exp.id}
+								onDelete={DeleteProjectButton}
+								onChange={handleChangePro}
+								onPointDelete={DeleteProjectsPointButton}
+								onPointAdd={AddProjectsPointButton}
 							/>
 						);
 					})}
@@ -300,7 +405,7 @@ function App() {
 				<Container>
 					<ReactToPrint
 						trigger={() => (
-							<Button variant="primary" size="lg" block>
+							<Button style={{ backgroundColor: "#343A40" }} size="lg" block>
 								Print PDF
 							</Button>
 						)}
@@ -328,6 +433,22 @@ function App() {
 									city={x.city}
 									from={x.from}
 									to={x.to}
+								/>
+							);
+						})}
+					</Container>
+					<Container className="mt-2">
+						{resume.projects.length !== 0 ? (
+							<h3 className="sep">Projects</h3>
+						) : null}
+						{resume.projects.map((x) => {
+							return (
+								<ShowProj
+									link={x.link}
+									key={x.id}
+									title={x.title}
+									tech={x.tech}
+									points={x.points}
 								/>
 							);
 						})}
