@@ -303,9 +303,11 @@ function App() {
 					console.log(x);
 					return { ...eduInfo, points: x };
 				}
+				return { ...eduInfo };
 			});
+			console.log(newEdu);
 
-			return { ...resume, projects: newEdu };
+			return { ...resume, projects: [...newEdu] };
 		});
 	};
 	return (
