@@ -415,7 +415,7 @@ function App() {
 			</Card>
 
 			<Container
-				className="result justify-content-md-between"
+				className="result justify-content-md-between mt-3"
 				ref={componentRef}
 			>
 				<Row>
