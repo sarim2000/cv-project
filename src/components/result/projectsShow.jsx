@@ -5,11 +5,13 @@ const ShowProj = ({ title, link, tech, points }) => {
 		<Container className="mb-2">
 			<Row>
 				<Col>
+					{console.log(title.length)}
 					<h4>
 						<a href={link} style={{ color: "black" }}>
 							{title}
-						</a>{" "}
-						| <span style={{ fontSize: "19px" }}>{tech}</span>
+						</a>
+						{title.length !== 0 && link.length !== 0 ? "|" : null}
+						<span style={{ fontSize: "19px" }}>{tech}</span>
 					</h4>
 				</Col>
 			</Row>

@@ -245,10 +245,7 @@ function App() {
 			id: uuidv4(),
 			title: "",
 			tech: "",
-			points: [
-				{ id: uuidv4(), poi: "" },
-				{ id: uuidv4(), poi: "" },
-			],
+			points: [],
 			link: "",
 		};
 
