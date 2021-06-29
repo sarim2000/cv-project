@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const SkillShow = ({ ski, onChange, onDelete }) => {
 	return (
@@ -11,7 +11,13 @@ const SkillShow = ({ ski, onChange, onDelete }) => {
 				onChange={(e) => onChange(e, ski.id)}
 			/>
 
-			<button onClick={() => onDelete(ski.id)}>Delete</button>
+			<Button
+				className="mt-2 mb-1"
+				variant="danger"
+				onClick={() => onDelete(ski.id)}
+			>
+				Delete
+			</Button>
 		</Container>
 	);
 };

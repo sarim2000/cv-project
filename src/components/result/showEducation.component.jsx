@@ -8,7 +8,7 @@ const ShowEducation = ({ universityName, city, degree, from, to }) => {
 					<h4>{universityName}</h4>
 				</Col>
 				<Col xs={6} md={4} style={{ textAlign: "end" }}>
-					{city}, India
+					{city.length !== 0 ? city + ", India" : null}
 				</Col>
 			</Row>
 			<Row>
@@ -16,7 +16,7 @@ const ShowEducation = ({ universityName, city, degree, from, to }) => {
 					{degree}
 				</Col>
 				<Col xs={6} md={4} style={{ textAlign: "end" }}>
-					{from} - {to}
+					{from.length !== 0 ? from + " - " : null} {to}
 				</Col>
 			</Row>
 		</div>

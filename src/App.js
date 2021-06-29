@@ -316,7 +316,9 @@ function App() {
 				<Row>
 					<Container>
 						<h3>Education Info</h3>
-						<button onClick={AddButtonEdu}>Add</button>
+						<Button className="mb-2" variant="success" onClick={AddButtonEdu}>
+							Add
+						</Button>
 					</Container>
 
 					{resume.education.map((edu) => {
@@ -333,7 +335,9 @@ function App() {
 				<Row>
 					<Container>
 						<h3>Projects Info</h3>
-						<button onClick={AddButtonPro}>Add</button>
+						<Button className="mb-2" variant="success" onClick={AddButtonPro}>
+							Add
+						</Button>
 					</Container>
 
 					{resume.projects.map((exp) => {
@@ -352,7 +356,9 @@ function App() {
 				<Row>
 					<Container>
 						<h3>Experience Info</h3>
-						<button onClick={AddButtonExp}>Add</button>
+						<Button className="mb-2" variant="success" onClick={AddButtonExp}>
+							Add
+						</Button>
 					</Container>
 
 					{resume.experience.map((exp) => {
@@ -369,7 +375,13 @@ function App() {
 				<Row>
 					<Container>
 						<h3>Achievements Info</h3>
-						<button onClick={AddButtonAchievement}>Add</button>
+						<Button
+							className="mb-2"
+							variant="success"
+							onClick={AddButtonAchievement}
+						>
+							Add
+						</Button>
 					</Container>
 
 					{resume.achievements.map((exp) => {
@@ -386,7 +398,13 @@ function App() {
 				<Row>
 					<Container>
 						<h3>Skills Info</h3>
-						<button onClick={AddButtonSkills}>Add</button>
+						<Button
+							className="mb-2"
+							variant="success"
+							onClick={AddButtonSkills}
+						>
+							Add
+						</Button>
 					</Container>
 
 					{resume.skills.map((exp) => {
@@ -472,17 +490,25 @@ function App() {
 						{resume.achievements.length !== 0 ? (
 							<h3 className="sep">Achievements</h3>
 						) : null}
-						{resume.achievements.map((x) => {
-							return <ShowAchievements key={x.id} x={x} />;
-						})}
+						{
+							<ul>
+								{resume.achievements.map((x) => {
+									return <ShowAchievements key={x.id} x={x} />;
+								})}
+							</ul>
+						}
 					</Container>
 					<Container className="mt-2">
 						{resume.skills.length !== 0 ? (
 							<h3 className="sep">Skills</h3>
 						) : null}
-						{resume.skills.map((x) => {
-							return <ShowSk key={x.id} x={x} />;
-						})}
+						{
+							<ul>
+								{resume.skills.map((x) => {
+									return <ShowSk key={x.id} x={x} />;
+								})}
+							</ul>
+						}
 					</Container>
 				</Row>
 			</Container>

@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const ProShow = ({ pro, onChange, onDelete, onPointDelete, onPointAdd }) => {
 	return (
@@ -19,7 +19,14 @@ const ProShow = ({ pro, onChange, onDelete, onPointDelete, onPointAdd }) => {
 				onChange={(e) => onChange(e, pro.id)}
 			/>
 			<label htmlFor="points">Enter Points:</label>
-			<button onClick={() => onPointAdd(pro.id)}>Add</button>
+			<Button
+				className="mt-2"
+				variant="success"
+				className="ml-2 mt-1"
+				onClick={() => onPointAdd(pro.id)}
+			>
+				Add
+			</Button>
 			<Container>
 				{pro.points.map((item) => {
 					return (
@@ -29,7 +36,13 @@ const ProShow = ({ pro, onChange, onDelete, onPointDelete, onPointAdd }) => {
 								value={item.poi}
 								onChange={(e) => onChange(e, item.id)}
 							/>
-							<button onClick={() => onPointDelete(item.id)}>Del</button>
+							<Button
+								className="mt-2"
+								variant="danger"
+								onClick={() => onPointDelete(item.id)}
+							>
+								Del
+							</Button>
 						</li>
 					);
 				})}
@@ -43,7 +56,13 @@ const ProShow = ({ pro, onChange, onDelete, onPointDelete, onPointAdd }) => {
 				pattern="https://.*"
 				onChange={(e) => onChange(e, pro.id)}
 			/>
-			<button onClick={() => onDelete(pro.id)}>Delete</button>
+			<Button
+				className="mt-2"
+				variant="danger"
+				onClick={() => onDelete(pro.id)}
+			>
+				Delete
+			</Button>
 		</Container>
 	);
 };

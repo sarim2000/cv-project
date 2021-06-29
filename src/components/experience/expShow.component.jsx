@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const ExpShow = ({ exp, onChange, onDelete }) => {
 	return (
@@ -35,7 +35,13 @@ const ExpShow = ({ exp, onChange, onDelete }) => {
 				onChange={(e) => onChange(e, exp.id)}
 			/>
 
-			<button onClick={() => onDelete(exp.id)}>Delete</button>
+			<Button
+				className="mt-2"
+				variant="danger"
+				onClick={() => onDelete(exp.id)}
+			>
+				Delete
+			</Button>
 		</Container>
 	);
 };

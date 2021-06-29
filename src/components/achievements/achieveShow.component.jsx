@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 
 const AchieveShow = ({ ach, onChange, onDelete }) => {
 	return (
@@ -11,7 +11,13 @@ const AchieveShow = ({ ach, onChange, onDelete }) => {
 				onChange={(e) => onChange(e, ach.id)}
 			/>
 
-			<button onClick={() => onDelete(ach.id)}>Delete</button>
+			<Button
+				className="mt-2"
+				variant="danger"
+				onClick={() => onDelete(ach.id)}
+			>
+				Delete
+			</Button>
 		</Container>
 	);
 };

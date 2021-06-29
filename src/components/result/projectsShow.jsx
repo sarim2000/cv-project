@@ -10,7 +10,7 @@ const ShowProj = ({ title, link, tech, points }) => {
 						<a href={link} style={{ color: "black" }}>
 							{title}
 						</a>
-						{title.length !== 0 && link.length !== 0 ? "|" : null}
+						{title.length !== 0 && tech.length !== 0 ? " | " : null}
 						<span style={{ fontSize: "19px" }}>{tech}</span>
 					</h4>
 				</Col>
