@@ -4,12 +4,12 @@ const Profile = ({ handleChangeProfile }) => {
 		<Container>
 			<Row>
 				<Col>
-					<label htmlFor="pro">Profile link: </label>
 					<input
 						type="text"
 						name="pro"
 						onChange={(e) => handleChangeProfile(e)}
 					/>
+					<label htmlFor="pro">Profile link: </label>
 				</Col>
 			</Row>
 		</Container>

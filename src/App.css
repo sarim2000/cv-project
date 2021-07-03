@@ -3,3 +3,11 @@
 	border-bottom-style: solid;
 	padding-bottom: 3px;
 }
+
+.int {
+	background-image: linear-gradient(to bottom right, white, #343a40);
+}
+.result {
+	font-family: "EB Garamond", serif;
+	/* color: b; */
+}

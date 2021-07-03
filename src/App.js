@@ -15,13 +15,23 @@ import ShowAchievements from "./components/result/showAchievements";
 import SkillShow from "./components/skills/skill.component";
 import ShowProj from "./components/result/projectsShow";
 import ShowSk from "./components/result/showSk";
-import ReactToPrint, { PrintContextConsumer } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
 import "./App.css";
 
 function App() {
 	const [resume, setResume] = useState(emptyInfo);
+	React.useEffect(() => {
+		const infos = JSON.parse(localStorage.getItem("info"));
+		if (infos) {
+			setResume(infos);
+		}
+	}, []);
+	React.useEffect(() => {
+		localStorage.setItem("info", JSON.stringify(resume));
+	}, [resume]);
 	const componentRef = useRef();
+
 	// const pdfExportComponent = React.useRef(null);
 	// const container = React.useRef(null);
 	// const exportPDFWithMethod = () => {
@@ -35,7 +45,8 @@ function App() {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		console.log(name, value);
+
+		// this.e.add
 		setResume((resume) => ({
 			...resume,
 			personalInfo: {
@@ -309,9 +320,9 @@ function App() {
 	};
 	return (
 		<div className="App">
-			<Card>
+			<Card className="int">
 				<Row>
-					<Intro handleChange={handleChange} />
+					<Intro val={resume.personalInfo} handleChange={handleChange} />
 				</Row>
 				<Row>
 					<Container>
@@ -326,6 +337,7 @@ function App() {
 							<EduShow
 								edu={edu}
 								key={edu.id}
+								val={resume.education}
 								onChange={handleAddEductaion}
 								onDelete={DeleteEduButton}
 							/>

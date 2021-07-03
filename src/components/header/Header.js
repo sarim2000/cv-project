@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<Navbar variant="dark" bg="dark" expand="xl">
 			<Container fluid>
-				<Navbar.Brand href="#home">CV-Resume</Navbar.Brand>
+				<Navbar.Brand href="#result">CV-Resume</Navbar.Brand>
 			</Container>
 		</Navbar>
 	);
